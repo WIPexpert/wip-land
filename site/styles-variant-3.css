@@ -1,0 +1,92 @@
+/* Variant 3 layout constraints */
+.variant-3 .header-inner,
+.variant-3 main,
+.variant-3 .footer-inner {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.variant-3 main {
+  padding: 0 20px;
+}
+.variant-3 .chapter {
+  padding-left: 0;
+  padding-right: 0;
+}
+.variant-3 .site-footer { justify-content: center; }
+.variant-3 .footer-inner { display: flex; justify-content: space-between; gap: 20px; width: 100%; }
+
+/* Hover style (unified) for Variant 3 only */
+.variant-3 .benefit,
+.variant-3 .card,
+.variant-3 .price-card,
+.variant-3 .promo,
+.variant-3 .faq-col details,
+.variant-3 .steps li,
+.variant-3 .logo-item {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.variant-3 .benefit::before,
+.variant-3 .card::before,
+.variant-3 .price-card::before,
+.variant-3 .promo::before,
+.variant-3 .faq-col details::before,
+.variant-3 .logo-item::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--brand-green);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.variant-3 .steps li::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--brand-green);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.variant-3 .benefit:hover,
+.variant-3 .card:hover,
+.variant-3 .price-card:hover,
+.variant-3 .promo:hover,
+.variant-3 .faq-col details:hover,
+.variant-3 .steps li:hover,
+.variant-3 .logo-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12);
+}
+.variant-3 .benefit:hover::before,
+.variant-3 .card:hover::before,
+.variant-3 .price-card:hover::before,
+.variant-3 .promo:hover::before,
+.variant-3 .faq-col details:hover::before,
+.variant-3 .steps li:hover::after,
+.variant-3 .logo-item:hover::before {
+  opacity: 1;
+}
+
+/* Provide room for the bracket without changing background */
+.variant-3 .benefit,
+.variant-3 .card,
+.variant-3 .price-card,
+.variant-3 .promo,
+.variant-3 .faq-col details,
+.variant-3 .steps li {
+  padding-left: 28px;
+}
+
+@media (max-width: 980px) {
+  .variant-3 .footer-inner { flex-direction: column; }
+}
