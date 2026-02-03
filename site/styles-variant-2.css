@@ -101,6 +101,81 @@ main { position: relative; z-index: 1; }
   color: var(--muted);
   margin-bottom: 16px;
 }
+.chapter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.chapter-toggle {
+  display: inline-flex;
+  gap: 8px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
+}
+.toggle-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+}
+.toggle-btn.is-active {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+/* Variant 3 mode B (alternate look) */
+.variant-3.mode-b .bg-glow {
+  background: radial-gradient(900px 300px at 15% 20%, rgba(255,219,226,0.55) 0%, transparent 60%),
+              radial-gradient(700px 280px at 85% 10%, rgba(104,75,255,0.25) 0%, transparent 55%);
+}
+.variant-3.mode-b .hero {
+  background: #ffffff;
+  border-radius: 28px;
+  margin: 0 4vw;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+}
+.variant-3.mode-b .steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.variant-3.mode-b .steps li {
+  border: none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.variant-3.mode-b .steps li::before {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--brand-pink);
+  color: #5a2b3a;
+  margin-right: 10px;
+}
+.variant-3.mode-b .benefit-list {
+  grid-template-columns: 1fr;
+}
+.variant-3.mode-b .benefit {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.variant-3.mode-b .benefit h3 {
+  margin-bottom: 0;
+}
 
 .hero-grid {
   display: grid;

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
     <link rel="stylesheet" href="styles-variant-2.css" />
   </head>
-  <body>
+  <body class="variant-3 mode-a">
     <div class="bg-noise"></div>
     <div class="bg-glow"></div>
 
@@ -59,7 +59,13 @@
       </section>
 
       <section class="chapter" id="how">
-        <div class="chapter-label">Chapter 1</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 1</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 3</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 3-1</button>
+          </div>
+        </div>
         <h2>How it works</h2>
         <ol class="steps">
           <li>Send us the JD and set your reward. We’ll handle the listing and help you determine the sweet spot.</li>
@@ -300,6 +306,16 @@
 
     <script async src="https://tally.so/widgets/embed.js"></script>
     <script>
+      const toggleButtons = document.querySelectorAll('.chapter-toggle .toggle-btn');
+      toggleButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const mode = btn.getAttribute('data-mode');
+          document.body.classList.remove('mode-a', 'mode-b');
+          document.body.classList.add(mode);
+          toggleButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+        });
+      });
+
       const observer = new IntersectionObserver((entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
