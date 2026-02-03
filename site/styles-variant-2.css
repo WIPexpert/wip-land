@@ -256,8 +256,9 @@ main { position: relative; z-index: 1; }
 .btn .iconoir-arrow-right { margin-left: 8px; font-size: 1.1em; }
 
 .btn.primary { background: var(--brand-blue); color: white; border-color: var(--brand-blue); }
-.btn.primary:hover { filter: brightness(1.05); }
-.btn.ghost:hover { border-color: var(--brand-green); color: var(--brand-green); }
+.btn.primary:hover { filter: brightness(1.05); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(104,75,255,0.35); }
+.btn.ghost:hover { border-color: var(--brand-green); color: var(--brand-green); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(91,204,37,0.20); }
+.btn { transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, border-color 0.2s ease; }
 .btn.ghost { background: transparent; }
 .btn-card { margin-top: 14px; }
 .cta-spotlight { box-shadow: 0 18px 40px rgba(104,75,255,0.35); }
