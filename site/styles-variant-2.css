@@ -179,7 +179,7 @@ main { position: relative; z-index: 1; }
   grid-template-columns: repeat(2, 1fr);
 }
 .variant-3 .chapter.mode-b#jobs-preview .benefit {
-  border: 1px dashed rgba(104,75,255,0.25);
+  border: none;
 }
 
 .variant-3 .chapter.mode-b#faq .faq-columns {
