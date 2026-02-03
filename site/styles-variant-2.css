@@ -269,14 +269,19 @@ main { position: relative; z-index: 1; }
   gap: 20px;
 }
 
-.benefit, .card, .price-card, .promo, .faq-col details, .steps li, .logo-item {
+.benefit, .card, .price-card, .promo, .faq-col details {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.benefit, .card, .price-card, .promo, .faq-col details {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-.benefit:hover, .card:hover, .price-card:hover, .promo:hover, .faq-col details:hover, .steps li:hover, .logo-item:hover {
+.benefit:hover, .card:hover, .price-card:hover, .promo:hover, .faq-col details:hover {
   transform: scale(1.01);
-  box-shadow:
-    0 24px 70px rgba(0,0,0,0.12),
-    inset 3px 0 0 var(--brand-green);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12);
   border-color: rgba(104,75,255,0.25);
 }
 .benefit:hover { border-color: rgba(91,204,37,0.5); }
@@ -303,7 +308,8 @@ main { position: relative; z-index: 1; }
   color: var(--muted);
 }
 .steps li:hover {
-  background: transparent;
+  background: rgba(255,219,226,0.35);
+  box-shadow: inset 3px 0 0 var(--brand-green);
 }
 
 .price-grid {
