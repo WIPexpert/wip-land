@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>WIP Landing Variants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #f7f5f1;
+        --ink: #1b1b1b;
+        --muted: #6b6b6b;
+        --brand-blue: #684bff;
+        --brand-green: #5bcc25;
+        --brand-pink: #ffdbe2;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      header {
+        padding: 40px 6vw 10px;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+        margin: 0 0 8px;
+      }
+      p { color: var(--muted); margin: 0; }
+      main {
+        padding: 20px 6vw 60px;
+        display: grid;
+        gap: 16px;
+        max-width: 1100px;
+      }
+      a.card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 20px;
+        padding: 18px 22px;
+        border-radius: 16px;
+        text-decoration: none;
+        color: var(--ink);
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+      a.card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+        border-color: rgba(104,75,255,0.3);
+      }
+      .badge {
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: var(--brand-pink);
+        color: #5a2b3a;
+      }
+      .meta { font-size: 0.9rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>WIP Landing Variants</h1>
+      <p>Select a version to preview.</p>
+    </header>
+
+    <main>
+      <a class="card" href="site/index.html">
+        <div>
+          <div><strong>Variant 1</strong> — Trust‑first (base)</div>
+          <div class="meta">Original layout for reference</div>
+        </div>
+        <span class="badge">Base</span>
+      </a>
+
+      <a class="card" href="site/variant-2.html">
+        <div>
+          <div><strong>Variant 2</strong> — Trust‑first + WIP brand</div>
+          <div class="meta">Brand assets, pricing cards, Tally CTAs</div>
+        </div>
+        <span class="badge">Current</span>
+      </a>
+    </main>
+  </body>
+</html>
