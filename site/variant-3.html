@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
     <link rel="stylesheet" href="styles-variant-2.css" />
   </head>
-  <body class="variant-3 mode-a">
+  <body class="variant-3">
     <div class="bg-noise"></div>
     <div class="bg-glow"></div>
 
@@ -76,7 +76,13 @@
       </section>
 
       <section class="chapter" id="benefits">
-        <div class="chapter-label">Chapter 2</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 2</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 2</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 2-1</button>
+          </div>
+        </div>
         <h2>Turn your entire network into a hiring force</h2>
         <div class="benefit-list">
           <article class="benefit">
@@ -95,7 +101,13 @@
       </section>
 
       <section class="chapter trust" id="trust">
-        <div class="chapter-label">Chapter 3</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 3</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 3</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 3-1</button>
+          </div>
+        </div>
         <h2>Trust is a two-way street</h2>
         <div class="two-col">
           <div class="card">
@@ -221,7 +233,13 @@
       </section>
 
       <section class="chapter" id="jobs-preview">
-        <div class="chapter-label">Chapter 7</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 7</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 7</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 7-1</button>
+          </div>
+        </div>
         <h2>Preview open roles</h2>
         <div class="benefit-list">
           <article class="benefit">
@@ -243,7 +261,13 @@
       </section>
 
       <section class="chapter faq" id="faq">
-        <div class="chapter-label">Chapter 8</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 8</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 8</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 8-1</button>
+          </div>
+        </div>
         <h2>FAQ</h2>
         <div class="faq-columns">
           <div class="faq-col">
@@ -286,7 +310,13 @@
       </section>
 
       <section class="chapter contact" id="contact">
-        <div class="chapter-label">Chapter 9</div>
+        <div class="chapter-head">
+          <div class="chapter-label">Chapter 9</div>
+          <div class="chapter-toggle" role="tablist" aria-label="Variant 3 style toggle">
+            <button class="toggle-btn is-active" data-mode="mode-a" type="button">Chapter 9</button>
+            <button class="toggle-btn" data-mode="mode-b" type="button">Chapter 9-1</button>
+          </div>
+        </div>
         <h2>Have a specific request or a question? We’ll be happy to know more. Get in touch, only humans here.</h2>
         <div class="button-row">
           <a class="btn primary" href="https://cal.com/wip-mike-daykhin/wip-sales-call" target="_blank" rel="noopener noreferrer">Schedule an intro call <i class="iconoir-arrow-right"></i></a>
@@ -310,10 +340,20 @@
       toggleButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           const mode = btn.getAttribute('data-mode');
-          document.body.classList.remove('mode-a', 'mode-b');
-          document.body.classList.add(mode);
-          toggleButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+          const chapter = btn.closest('.chapter');
+          if (!chapter) return;
+          chapter.classList.remove('mode-a', 'mode-b');
+          chapter.classList.add(mode);
+          chapter.querySelectorAll('.toggle-btn').forEach((b) => {
+            b.classList.toggle('is-active', b === btn);
+          });
         });
+      });
+
+      document.querySelectorAll('.chapter').forEach((chapter) => {
+        if (chapter.querySelector('.chapter-toggle')) {
+          chapter.classList.add('mode-a');
+        }
       });
 
       const observer = new IntersectionObserver((entries) => {
