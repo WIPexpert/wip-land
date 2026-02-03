@@ -31,3 +31,28 @@ a:hover { text-decoration: underline; }
 hr { border: none; border-top: 1px solid rgba(0,0,0,0.08); margin: 24px 0; }
 .header { display: flex; gap: 12px; align-items: center; }
 .back { font-size: 0.95rem; color: var(--muted); }
+
+.tabs { margin-top: 18px; }
+.tabs input { display: none; }
+.tab-labels { display: flex; gap: 12px; margin-bottom: 18px; }
+.tab-labels label {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  cursor: pointer;
+  font-weight: 600;
+}
+#tab-individual:checked ~ .tab-labels label[for="tab-individual"],
+#tab-business:checked ~ .tab-labels label[for="tab-business"] {
+  background: var(--brand-blue);
+  color: #fff;
+  border-color: var(--brand-blue);
+}
+.tab-panel { display: none; }
+#tab-individual:checked ~ .tab-panel:nth-of-type(1),
+#tab-business:checked ~ .tab-panel:nth-of-type(2) {
+  display: block;
+}
+
+details { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 14px 16px; }
+details summary { cursor: pointer; font-weight: 600; }
