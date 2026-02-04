@@ -1,55 +1,426 @@
-/* Variant 3 layout constraints */
-.variant-3 main,
-.variant-3 .footer-inner {
+:root {
+  --bg: #f7f5f1;
+  --ink: #1b1b1b;
+  --muted: #5f5f5f;
+  --brand-blue: #684bff;
+  --brand-green: #5bcc25;
+  --brand-gray: #eceef4;
+  --brand-gray-2: #cacaca;
+  --brand-pink: #ffdbe2;
+  --card: #ffffff;
+  --shadow: 0 20px 60px rgba(0,0,0,0.10);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.6rem, 4vw, 4.6rem); line-height: 1.05; }
+h2 { font-size: clamp(2rem, 3vw, 3.2rem); line-height: 1.1; margin: 0 0 20px; }
+h3 { font-size: clamp(1.3rem, 2.2vw, 1.8rem); margin: 0 0 10px; }
+
+p { font-size: 1.05rem; color: var(--ink); }
+
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow {
+  position: fixed;
+  inset: -20% -10% auto -10%;
+  height: 60vh;
+  background: radial-gradient(800px 300px at 20% 30%, rgba(104,75,255,0.25) 0%, transparent 60%),
+              radial-gradient(700px 320px at 80% 10%, rgba(91,204,37,0.20) 0%, transparent 55%);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  background: rgba(247,245,241,0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.header-inner {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-}
-.variant-3 main {
   padding: 0 20px;
-}
-.variant-3 .chapter {
-  padding-left: 0;
-  padding-right: 0;
-}
-.variant-3 .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
-  max-width: none;
+}
+
+.logo { height: 32px; }
+
+.nav { display: flex; gap: 18px; font-size: 0.95rem; }
+.nav a { color: var(--muted); text-decoration: none; }
+.nav a:hover { color: var(--brand-blue); }
+
+.cta-link {
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--brand-blue);
+  font-size: 0.95rem;
+}
+.cta-link:hover { color: var(--brand-blue); }
+
+main { position: relative; z-index: 1; }
+
+.chapter {
+  padding: 90px 6vw;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.chapter.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.chapter-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
-.variant-3 .site-footer { justify-content: center; }
-.variant-3 .footer-inner { display: flex; justify-content: space-between; gap: 20px; width: 100%; }
+.chapter-toggle {
+  display: inline-flex;
+  gap: 8px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
+}
+.toggle-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+}
+.toggle-btn.is-active {
+  background: var(--brand-blue);
+  color: #fff;
+}
 
-/* Hover style (only Chapter 7: Preview open roles) */
-.variant-3 #jobs-preview .benefit {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+/* Variant 3 mode B (alternate look per chapter) */
+.variant-3 .chapter.mode-b#how .steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
-.variant-3 #jobs-preview .benefit::after {
-  content: "";
-  position: absolute;
-  left: -6px;
-  top: 10px;
-  height: calc(100% - 20px);
-  width: 12px;
+.variant-3 .chapter.mode-b#how .steps li {
+  border: none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.variant-3 .chapter.mode-b#how .steps li::before {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--brand-pink);
+  color: #5a2b3a;
+  margin-right: 10px;
+}
+
+.variant-3 .chapter.mode-b#benefits .benefit-list {
+  grid-template-columns: 1fr;
+}
+.variant-3 .chapter.mode-b#benefits .benefit {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.variant-3 .chapter.mode-b#benefits .benefit h3 {
+  margin-bottom: 0;
+}
+
+.variant-3 .chapter.mode-b#trust .two-col {
+  grid-template-columns: 1fr;
+}
+.variant-3 .chapter.mode-b#trust .card {
+  border-left: 4px solid var(--brand-blue);
+}
+
+.variant-3 .chapter.mode-b#jobs-preview .benefit-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+.variant-3 .chapter.mode-b#jobs-preview .benefit {
+  border: none;
+}
+
+.variant-3 .chapter.mode-b#faq .faq-columns {
+  grid-template-columns: 1fr;
+}
+.variant-3 .chapter.mode-b#faq .faq-col details {
   border-left: 4px solid var(--brand-green);
-  border-radius: 14px 0 0 14px;
-  opacity: 0;
-  transition: opacity 0.18s ease;
-  pointer-events: none;
 }
-.variant-3 #jobs-preview .benefit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+
+.variant-3 .chapter.mode-b#contact {
+  background: #ffffff;
+  border-radius: 24px;
+  margin: 0 4vw;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.10);
 }
-.variant-3 #jobs-preview .benefit:hover::after {
-  opacity: 1;
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
 }
+
+.hero-visual { display: flex; justify-content: center; }
+.hero-ill {
+  width: min(520px, 90vw);
+  height: auto;
+  filter: drop-shadow(0 30px 60px rgba(104,75,255,0.25));
+}
+
+.paper-stack {
+  width: min(420px, 80vw);
+  height: 320px;
+  position: relative;
+}
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.s1 { transform: rotate(-2deg) translate(-12px, 6px); }
+.s2 { transform: rotate(3deg) translate(8px, -6px); background: #fff6f8; }
+.s3 { transform: rotate(-6deg) translate(-6px, -10px); background: #f4f8ff; }
+.s4 { transform: rotate(1deg) translate(10px, 8px); background: #f3fbf6; }
+
+.badge {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  background: var(--ink);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.button-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 18px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+.btn .iconoir-arrow-right { margin-left: 8px; font-size: 1.1em; }
+
+.btn.primary { background: var(--brand-blue); color: white; border-color: var(--brand-blue); }
+.btn.primary:hover { filter: brightness(1.05); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(104,75,255,0.35); }
+.btn.ghost:hover { border-color: var(--brand-green); color: var(--brand-green); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(91,204,37,0.20); }
+.btn { transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, border-color 0.2s ease; }
+.btn.ghost { background: transparent; }
+.btn-card { margin-top: 14px; }
+.cta-spotlight { box-shadow: 0 18px 40px rgba(104,75,255,0.35); }
+
+.benefit-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.benefit, .card, .price-card, .promo, .faq-col details {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.benefit, .card, .price-card, .promo, .faq-col details {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.benefit:hover, .card:hover, .price-card:hover, .promo:hover, .faq-col details:hover {
+  transform: scale(1.01);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12);
+  border-color: rgba(104,75,255,0.25);
+}
+.benefit:hover { border-color: rgba(91,204,37,0.5); }
+
+/* Chapter 2 (Benefits) hover tweak for Variant 3 only */
+.variant-3 #benefits .benefit:hover {
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12), inset 3px 0 0 var(--brand-green);
+  border-color: rgba(0,0,0,0.05);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li {
+  counter-increment: step;
+  padding: 18px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-size: 1.12rem;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+}
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  margin-right: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.steps li:hover {
+  background: rgba(255,219,226,0.35);
+  box-shadow: inset 3px 0 0 var(--brand-green);
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.price-card.accent { background: #f3f0ff; border: 1px solid rgba(104,75,255,0.25); }
+.price-card hr { border: none; border-top: 1px solid rgba(0,0,0,0.08); margin: 14px 0; }
+.muted { color: var(--muted); }
+.plan-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  font-size: 22px;
+  color: var(--brand-blue);
+}
+.price-card .plan-icon { color: var(--brand-blue); }
+.price-card.accent .plan-icon { color: var(--brand-green); }
+.promo-card .plan-icon { color: #d05a7f; }
+
+.promo {
+  margin-top: 20px;
+  background: var(--brand-pink);
+  border: 1px solid rgba(104,75,255,0.18);
+}
+.promo-card {
+  background: var(--brand-pink);
+  border: 1px solid rgba(104,75,255,0.18);
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+.logo-item {
+  position: relative;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.logo-item:hover { outline: 2px solid rgba(255,219,226,0.8); }
+.logo-item img {
+  max-width: 70%;
+  max-height: 60px;
+  position: absolute;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.logo-item .logo-color { opacity: 0; transform: scale(0.98); }
+.logo-item:hover .logo-gray { opacity: 0; }
+.logo-item:hover .logo-color { opacity: 1; transform: scale(1); }
+
+.faq-columns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.faq-col details { background: var(--card); padding: 14px 16px; border-radius: 12px; box-shadow: var(--shadow); }
+.faq-col details + details { margin-top: 12px; }
+summary { font-weight: 600; cursor: pointer; }
+
+.contact .fine { color: var(--muted); margin-top: 20px; }
+
+.site-footer {
+  padding: 40px 6vw 60px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-links a { color: var(--muted); text-decoration: none; }
 
 @media (max-width: 980px) {
-  .variant-3 .footer-inner { flex-direction: column; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .benefit-list, .two-col, .price-grid, .faq-columns, .logo-grid { grid-template-columns: 1fr; }
+  .site-header { flex-wrap: wrap; gap: 12px; }
+  .nav { order: 3; width: 100%; }
+}
+
+@media (max-width: 620px) {
+  .site-header { position: relative; }
+  .cta-link { width: 100%; text-align: left; }
+  .chapter { padding: 70px 6vw; }
 }
