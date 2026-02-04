@@ -79,6 +79,12 @@ p { font-size: 1.05rem; color: var(--ink); }
 }
 
 .logo { height: 32px; }
+.version-stamp {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-left: 12px;
+  white-space: nowrap;
+}
 
 .nav { display: flex; gap: 18px; font-size: 0.95rem; }
 .nav a { color: var(--muted); text-decoration: none; }
@@ -299,9 +305,28 @@ main { position: relative; z-index: 1; }
 .benefit:hover { border-color: rgba(91,204,37,0.5); }
 
 /* Chapter 2 (Benefits) hover tweak for Variant 3 only */
+.variant-3 #benefits .benefit {
+  position: relative;
+  overflow: hidden;
+}
+.variant-3 #benefits .benefit::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border-left: 4px solid transparent;
+  border-radius: 18px 0 0 18px;
+  transition: border-color 0.2s ease;
+  pointer-events: none;
+}
 .variant-3 #benefits .benefit:hover {
-  box-shadow: 0 24px 70px rgba(0,0,0,0.12), inset 3px 0 0 var(--brand-green);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12);
   border-color: transparent;
+}
+.variant-3 #benefits .benefit:hover::before {
+  border-left-color: var(--brand-green);
 }
 
 .two-col {
