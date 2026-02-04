@@ -281,6 +281,14 @@ main { position: relative; z-index: 1; }
 .btn-card { margin-top: 14px; }
 .cta-spotlight { box-shadow: 0 18px 40px rgba(104,75,255,0.35); }
 
+.cta-link {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cta-link:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
 .benefit-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -303,6 +311,55 @@ main { position: relative; z-index: 1; }
   border-color: rgba(104,75,255,0.25);
 }
 .benefit:hover { border-color: rgba(91,204,37,0.5); }
+
+/* Chapter 3/4/7/8 bracket hover (Variant 3 only) */
+.variant-3 #trust .card,
+.variant-3 #pricing .price-card,
+.variant-3 #jobs-preview .job-card,
+.variant-3 #faq .faq-col details {
+  position: relative;
+  overflow: hidden;
+}
+.variant-3 #trust .card::before,
+.variant-3 #pricing .price-card::before,
+.variant-3 #jobs-preview .job-card::before,
+.variant-3 #faq .faq-col details::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border-left: 4px solid transparent;
+  border-radius: 18px 0 0 18px;
+  transition: border-color 0.2s ease;
+  pointer-events: none;
+}
+.variant-3 #trust .card:hover,
+.variant-3 #pricing .price-card:hover,
+.variant-3 #jobs-preview .job-card:hover,
+.variant-3 #faq .faq-col details:hover {
+  box-shadow: 0 24px 70px rgba(0,0,0,0.12);
+  border-color: transparent;
+}
+.variant-3 #trust .card:hover::before,
+.variant-3 #pricing .price-card:hover::before,
+.variant-3 #jobs-preview .job-card:hover::before,
+.variant-3 #faq .faq-col details:hover::before {
+  border-left-color: var(--brand-green);
+}
+
+.variant-3 #jobs-preview .job-card {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.variant-3 #jobs-preview .job-card:hover {
+  transform: scale(1.01);
+}
 
 /* Chapter 2 (Benefits) hover tweak for Variant 3 only */
 .variant-3 #benefits .benefit {
@@ -408,7 +465,7 @@ main { position: relative; z-index: 1; }
   box-shadow: var(--shadow);
   overflow: hidden;
 }
-.logo-item:hover { outline: 2px solid rgba(255,219,226,0.8); }
+.logo-item:hover { outline: none; }
 .logo-item img {
   max-width: 70%;
   max-height: 60px;
