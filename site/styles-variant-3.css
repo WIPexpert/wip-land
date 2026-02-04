@@ -301,7 +301,7 @@ main { position: relative; z-index: 1; }
 /* Chapter 2 (Benefits) hover tweak for Variant 3 only */
 .variant-3 #benefits .benefit:hover {
   box-shadow: 0 24px 70px rgba(0,0,0,0.12), inset 3px 0 0 var(--brand-green);
-  border-color: rgba(0,0,0,0.05);
+  border-color: transparent;
 }
 
 .two-col {
